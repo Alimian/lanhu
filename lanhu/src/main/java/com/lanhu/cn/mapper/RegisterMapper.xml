@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanhu.cn.dao.RegisterDao">
+	<resultMap type="com.lanhu.cn.model.User" id="user">
+		<id column="id" property="id" javaType="int"/>
+		<result column="telphone" property="telPhone" javaType="String"/>
+		<result column="createdate" property="createDate" javaType="String"/>
+		<result column="img" property="img" javaType="String"/>
+		<result column="email" property="email" javaType="String"/>
+		<result column="password" property="password" javaType="String"/>
+	</resultMap>
+
+	<sql id="userInfo">
+		<trim prefix="(" suffixOverrides="," suffix=")" >
+			<if test="telPhone != null and telPhone !=''">#{telPhone},</if>
+			<if test="createDate != null and createDate !=''">#{createDate},</if>
+			<if test="img != null and img !=''">#{img},</if>
+			<if test="email != null and email !=''">#{email},</if>
+			<if test="password != null and password !=''">#{password},</if>
+		</trim>
+	</sql>
+	<insert id="register" parameterType="com.lanhu.cn.model.User" keyProperty="id" useGeneratedKeys="true" >
+		insert into user
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			<if test="telPhone != null and telPhone !=''">telphone,</if>
+			<if test="createDate != null and createDate !=''">createdate,</if>
+			<if test="img != null and img !=''">img,</if>
+			<if test="email != null and email !=''">email,</if>
+			<if test="password != null and password !=''">password,</if>
+		</trim>
+		values
+		<include refid="userInfo"/>
+	</insert>
+
+	<update id="updatepwd">
+		update user set password = #{1} where telphone = #{0}
+	</update>
+
+	<select id="selectUser" resultMap="user">
+		select * from user 
+		<where>
+			<if test="telPhone !=null and telPhone !=''">and telphone = #{telPhone}</if>
+			<if test="password !=null and password !=''">and password = #{password}</if>
+		</where>
+	</select>
+	
+	<select id="selectById" resultMap="user">
+	select * from user where id = #{id}
+	</select>
+
+</mapper>

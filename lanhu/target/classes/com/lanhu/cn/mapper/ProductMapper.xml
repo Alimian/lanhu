@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanhu.cn.dao.ProductDao">
+	<resultMap type="com.lanhu.cn.model.Product" id="product">
+		<id column="id" property="id" javaType="int"/>
+		<result column="product_name" property="productName" javaType="String"/>
+		<result column="product_img" property="productImg" javaType="String"/>
+		<result column="product_url" property="productUrl" javaType="String"/>
+		<result column="money_rate" property="moneyRate" javaType="double"/>
+		<result column="quota_min" property="quotaMin" javaType="Integer"/>
+		<result column="quota_max" property="quotaMax" javaType="Integer"/>
+		<result column="loan_period_star" property="loanPeriodStar" javaType="String"/>
+		<result column="loan_period_end" property="loanPeriodEnd" javaType="String"/>
+		<result column="loan_date" property="loanDate" javaType="String"/>
+		<result column="weight" property="weight" javaType="String"/>
+		<result column="apply_flow" property="applyFlow" javaType="String"/>
+		<result column="apply_cndition" property="applyCndition" javaType="String"/>
+		<result column="apply_material" property="applyMaterial" javaType="String"/>
+		<result column="remarks" property="remarks" javaType="String"/>
+		<result column="create_date" property="createDate" javaType="String"/>
+		<result column="update_date" property="updateDate" javaType="String"/>
+		<result column="create_user" property="createUser" javaType="String"/>
+		<result column="updata_user" property="updateUser" javaType="String"/>
+	</resultMap>
+
+	<insert id="insertProduct" parameterType="com.lanhu.cn.model.Product" keyProperty="id" useGeneratedKeys="true">
+		insert into product 
+		<trim prefix="(" suffixOverrides="," suffix=")">
+		<if test="productName != null and productName != ''">product_name,</if>
+		<if test="productImg != null and productImg != ''">product_img,</if>
+		<if test="productUrl != null and productUrl != ''">product_url,</if>
+		<if test="moneyRate != null and moneyRate != ''">money_rate,</if>
+		<if test="quotaMin != null and quotaMin != ''">quota_min,</if>
+		<if test="quotaMax != null and quotaMax != ''">quota_max,</if>
+		<if test="loanPeriodStar != null and loanPeriodStar != ''">loan_period_star,</if>
+		<if test="loanPeriodEnd != null and loanPeriodEnd != ''">loan_period_end,</if>
+		<if test="loanDate != null and loanDate != ''">loan_date,</if>
+		<if test="weight != null and weight != ''">weight,</if>
+		<if test="applyFlow != null and applyFlow != ''">apply_flow,</if>
+		<if test="applyCndition != null and applyCndition != ''">apply_cndition,</if>
+		<if test="applyMaterial != null and applyMaterial != ''">apply_material,</if>
+		<if test="remarks != null and remarks != ''">remarks,</if>
+		<if test="createDate != null and createDate != ''">create_date,</if>
+		<if test="updateDate != null and updateDate != ''">update_date,</if>
+		<if test="createUser != null and createUser != ''">create_user,</if>
+		<if test="updateUser != null and updateUser != ''">updata_user,</if>
+		</trim>
+		values
+		<trim prefix="(" suffixOverrides="," suffix=")">
+		<if test="productName != null and productName != ''">#{productName},</if>
+		<if test="productImg != null and productImg != ''">#{productImg},</if>
+		<if test="productUrl != null and productUrl != ''">#{productUrl},</if>
+		<if test="moneyRate != null and moneyRate != ''">#{moneyRate},</if>
+		<if test="quotaMin != null and quotaMin != ''">#{quotaMin},</if>
+		<if test="quotaMax != null and quotaMax != ''">#{quotaMax},</if>
+		<if test="loanPeriodStar != null and loanPeriodStar != ''">#{loanPeriodStar},</if>
+		<if test="loanPeriodEnd != null and loanPeriodEnd != ''">#{loanPeriodEnd},</if>
+		<if test="loanDate != null and loanDate != ''">#{loanDate},</if>
+		<if test="weight != null and weight != ''">#{weight},</if>
+		<if test="applyFlow != null and applyFlow != ''">#{applyFlow},</if>
+		<if test="applyCndition != null and applyCndition != ''">#{applyCndition},</if>
+		<if test="applyMaterial != null and applyMaterial != ''">#{applyMaterial},</if>
+		<if test="remarks != null and remarks != ''">#{remarks},</if>
+		<if test="createDate != null and createDate != ''">#{createDate},</if>
+		<if test="updateDate != null and updateDate != ''">#{updateDate},</if>
+		<if test="createUser != null and createUser != ''">#{createUser},</if>
+		<if test="updateUser != null and updateUser != ''">#{updateUser},</if>
+		</trim>
+	</insert>
+	<select id="selectProduct">
+	
+	</select>
+	<!-- 加载单个产品信息 -->
+	<select id="loadProduct" resultMap="product">
+		select * from product where id = #{id}
+	</select>
+	<update id="updateProduct">
+	
+	</update>
+	<delete id="deleteProduct">
+	delete from product
+	<where>
+		<if test="id !=null and id !=''">id = #{id}</if>
+	</where>
+	</delete>
+
+</mapper>

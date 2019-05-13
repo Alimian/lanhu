@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="lanhu"
+  id="myeclipse.1554810432718"
+  context-root="/lanhu"
+  j2ee-spec="6.0"
+  archive="lanhu.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+
